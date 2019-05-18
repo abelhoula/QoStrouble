@@ -28,3 +28,15 @@ C --> F(Linux scripts)
 E-->G[network access endpoints]
 F-->H[Android terminal]
 ```
+
+# Developer
+
+```mermaid
+graph LR
+A[User] -->B(Portainer)
+    B -->|Select exiting stack| C{Container}
+    C -->|Duplicate| D[Instance 1]
+    C -->|Duplicate| E[Instance 2]
+    C -->|Duplicate| F[Instance 3]
+    C -->|Duplicate| J[Instance 2]
+```
