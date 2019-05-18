@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+   <title>NetProTester</title>
+<link rel="icon" href="images/Orange.png">
+ <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script> 
+
+   
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+<link href="css/datepicker.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/ajax.js"></script> 
+        <script type="text/javascript" src="js/Ping.js"></script> 
+        <script type="text/javascript" src="js/jquery.table2excel.js"></script> 
+<script type="text/javascript" src="js/canvasjs.min.js"></script>
+	<script type="text/javascript" src="js/chart.js"></script>
+  
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+
+
+ $(function(){
+			$('#datepicker').datepicker({
+				inline: true,
+				//nextText: '&rarr;',
+				//prevText: '&larr;',
+				showOtherMonths: true,
+				dateFormat: 'yy-mm-dd',
+				dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+			});
+		});
+
+$(function(){
+			$('#datepicker2').datepicker({
+				inline: true,
+				//nextText: '&rarr;',
+				//prevText: '&larr;',
+				showOtherMonths: true,
+				dateFormat: 'yy-mm-dd',
+				dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+			});
+		});
+   
+
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+   $(document).ready(function() 
+    	{ 
+      	  $("#schedDiv").hide(); 
+   	 } 
+	);
+
+
+
+$(document).ready(function() 
+    	{ 
+      	  var request2 = $.ajax({
+        type: "GET",
+        url: "perl/interface.pl",
+	//dataType: "jsonp",
+       
+		
+
+        // script call was *not* successful
+        error: function() { 
+            alert("script call was not successful");
+        }, 
+        success: function(perl_data){
+var lines = perl_data.split("\n");  
+
+for (var i=0;i<lines.length-1;i++)
+{
+var j = 0;
+var eth = "";
+if (lines[i].substring(j,j+1) != " ")
+{
+while(lines[i].substring(j,j+1) != " ")
+{
+eth+=lines[i].substring(j,j+1);
+j++;
+}
+if (eth=="eth0") 
+{
+$('#Interface').prepend($('<option>', {
+    value: 0,
+    selected : true,
+    text: eth
+}));
+}
+else
+{
+if (eth!="Iface")
+{
+$('#Interface').append($('<option>', {
+    value: i+1,
+    text: eth
+}));
+}
+}
+}
+}
+
+		
+  }});
+   	 } 
+	);
+
+</SCRIPT>
+<style>
+
+#callPerl
+{
+margin-left : 20%;
+margin-right : 10%;
+}
+#stopPerl
+{
+margin-left : 10%;
+margin-right : 20%;
+}
+
+#Programmer
+{
+margin-left : 20%;
+margin-right : 10%;
+}
+#Annuler
+{
+margin-left : 10%;
+margin-right : 20%;
+}
+#tab
+{
+height : 100%;
+}
+</style>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse" >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Administrator</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>Ahmed Belhoula</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Hello</p>
+                                        <p>Adminstrat your network more easly</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                     
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                    
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">0 notification</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Ahmed Belhoula <b class="caret"></b></a>
+                    <ul class="dropdown-menu" >
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="http://accounts.google.com/"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav" id="l1" >
+                    <li class="active">
+                        <a href="ping.html"><i class="fa fa-fw fa-bar-chart-o" ></i> Ping</a>
+                    </li>
+                    <li>
+                        <a href="trace.html"><i class="fa fa-fw fa-bar-chart-o" ></i> Traceroute</a>
+                    </li>
+                    <li>
+                        <a href="dns.html"><i class="fa fa-fw fa-bar-chart-o"></i> DNS</a>
+                    </li>
+ 
+                 
+                            <li>
+                                <a href="webB.html"><i class="fa fa-fw fa-bar-chart-o"></i>Web browsing</a>
+                            </li>
+                             <li>
+                                <a href="httpDl.html"><i class="fa fa-fw fa-bar-chart-o"></i>Http download</a>
+                            </li> <li>
+                                <a href="httpUl.html"><i class="fa fa-fw fa-bar-chart-o"></i>Http upload</a>
+                            </li>
+                       
+     <li>
+                                <a href="ftpDl.html"><i class="fa fa-fw fa-bar-chart-o"></i>Ftp download</a>
+                            </li> <li>
+                                <a href="ftpUl.html"><i class="fa fa-fw fa-bar-chart-o"></i>Ftp upload</a>
+                            </li>
+                    <li>
+                        <a href="youtube.html"><i class="fa fa-fw fa-bar-chart-o"></i> Youtube</a>
+                    </li>
+                  
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12" id="h1">
+                        <h1 class="page-header">
+                            Ping 
+                        </h1>
+<img src="images/net.jpeg" alt="NetProTester" style="width:200px;height:60px; display : inline; float : right;">
+
+
+<div class="row">
+<div class="col-lg-12" >
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Test parametrs
+                            </li>
+                        
+                        </ol>
+</div>
+                    <div class="col-sm-6">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Destination</h3>
+                            </div>
+                                <input type="text" class="form-control" placeholder="www.google.fr"  id="lab" data-toggle="tooltip" title="Destination address or name" >
+                          
+                        </div>
+    </div>
+  
+   <div class="col-sm-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Test number</h3>
+                            </div>
+                           <input type="number" class="form-control" name="lab2" id="lab2" value="0" min="1" data-toggle="tooltip" title="Number of tests">
+                        </div>
+    </div>
+   <div class="col-sm-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Duration between tests (s)</h3>
+                            </div>
+                            <input type="number" class="form-control" name="lab3" id="lab3" value="0" min="0" data-toggle="tooltip" title="Time between tests">
+                        </div>
+    </div>
+
+ <div>                                           
+<div class="col-lg-7"> <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Test Options
+                            </li></div>
+<div class="col-lg-5"> <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Capture Options
+                            </li></div>
+
+ <div class="col-lg-7">
+                        
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th class="col-lg-1">Select</th>
+                                        <th class="col-lg-1">Parametre</th>
+                                        <th class="col-lg-2">Value</th>
+                                        <th class="col-lg-3">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr> 
+   					<td><input type="checkbox" class="col-lg-12" id="OptionT" data-toggle="tooltip" title="Send packets without interuption"></td> 
+    				 
+    				<td class="col-lg-1">&nbsp;&nbsp;&nbsp;None</td> 
+					<td class="col-lg-2"><input type="text"  class="col-lg-12" name="OptionT" id="OptionTText"  disabled></td>
+    				<td class="col-lg-3">Send without interuption</td> 
+				</tr> 
+	
+				<tr> 
+   					<td><input type="checkbox" id="OptionC" class="col-lg-12" data-toggle="tooltip" title="Number of packets to send"></td> 
+    				<td>&nbsp;&nbsp;&nbsp;Count</td> 
+					<td><input type="text" name="OptionC" id="OptionCText"  class="col-lg-12"></td>
+    				<td>Packets number</td> 
+				</tr> 
+				
+				<tr> 
+   					<td><input type="checkbox" id="OptionW" class="col-lg-12" data-toggle="tooltip" title="Wait time for each packet"></td> 
+    				<td>&nbsp;&nbsp;&nbsp;TimeOut</td> 
+					<td><input type="text" name="OptionW" id="OptionWText" class="col-lg-12"></td>
+    				<td>Adjust wait time</td> 
+				</tr> 
+				
+				<tr> 
+   					<td><input type="checkbox" id="OptionS" class="col-lg-12" data-toggle="tooltip" title="Mofifie the size of the packet"></td> 
+    				<td>&nbsp;&nbsp;&nbsp;Size</td> 
+					<td><input type="text" name="OptionS" id="OptionSText" class="col-lg-12"></td>
+    				<td>Adjust packets size</td> 
+				</tr> 
+				
+				<tr> 
+   					<td><input type="checkbox" id="OptionF" class="col-lg-12" data-toggle="tooltip" title="Do not fragment the packet"></td> 
+    				<td>&nbsp;&nbsp;&nbsp;None</td> 
+					<td><input type="text" name="OptionI" id="OptionIText" class="col-lg-12" disabled></td>
+    				<td>Don't fragment </td> 
+				</tr> 
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+ <div class="col-lg-5">
+                        
+                              <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th class="col-lg-1">Select</th>
+                                        <th class="col-lg-1">Value</th>
+                                        <th class="col-lg-3">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr> 
+   					<td><input type="checkbox" id="tsharkOk" class="col-lg-12" data-toggle="tooltip" title="Start tshark capture in paralel with the test"></td> 
+				<td><input type="text" name="OptionT" class="col-lg-12" class="TextOp" disabled></td>
+    				<td>Start tshark capture</td> 
+				</tr> 
+<tr> 
+   				<td><input type="checkbox" id="tsharkOfset" class="col-lg-12" data-toggle="tooltip" title="Cut the packet and take the header only"></td> 
+				<td><input type="text" name="OptionT" id="tsharkInterfaceText" disabled class="col-lg-12"></td>
+    				<td>Get headers only</td> 
+				</tr>
+<tr> 
+   				<td><input type="checkbox" id="tsharkC" class="col-lg-12" data-toggle="tooltip" title="Capture n packets only"></td> 
+				<td><input type="text" name="OptionT" id="tsharkCText" class="col-lg-12"></td>
+    				<td>Stop after n packets</td> 
+				</tr> 
+                            
+				<tr> 
+   				<td><input type="radio" id="tsharkPcap" name="tsh" class="col-lg-12" data-toggle="tooltip" title="Use pcap format"></td> 
+				<td><input type="text" name="OptionT" id="tsharkPcapText" class="col-lg-12" disabled></td>
+    				<td>Use pcap format</td> 
+				</tr>  
+
+				<tr> 
+   				<td><input type="radio" id="tsharkPcapng" name="tsh" class="col-lg-12" data-toggle="tooltip" title="Use pcapng format"></td> 
+				<td><input type="text" name="OptionT" id="tsharkPcapTextng" class="col-lg-12" disabled></td>
+    				<td>Use pcapng format</td> 
+				</tr>  
+	
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+</div>
+                <!-- /.row -->
+
+               
+                    <div class="col-lg-12" >
+                        <div class="alert alert-success">
+        <form id="loginForm" name="loginForm" method="post" action="">         
+                    <button id="callPerl" type="submit" value="Start" onclick='' class="btn btn-success" data-toggle="tooltip" title="Start the test now">Start</button>
+                    <button id="stopPerl" type="button" value="Stop" onclick='StopScript()' class="btn btn-danger" data-toggle="tooltip" title="Stop after this test">Stop</button>
+  		    <button id="schedPerl" type="button" value="Stop" onclick='showschedDiv()'" class="btn btn-primary" data-toggle="tooltip" title="Start the test after">Schedule</button>
+</form>
+                        </div>
+                    </div>
+
+ <div class="col-lg-12" id="schedDiv">
+                        <div class="alert alert-info">
+<div class="col-lg-12">
+  <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Start after
+                            </li>
+                        </ol>
+</div>
+<div class="col-lg-12">
+
+<form id="pr11">
+  			<label for="mon_id" id="aa1">30 Sec</label>
+  			<label for="mon_id"id="aa2">1 Min</label>
+  			<label for="mon_id" id="aa3">2 Min</label> 
+			<label for="mon_id" id="aa4">5 Min</label> 
+			<label for="mon_id" id="aa5">10 Min</label> 
+			<label for="mon_id" id="aa6">15 Min</label> 
+			<label for="mon_id" id="aa7">30 Min</label> 
+			<label for="mon_id" id="aa8">60 Min</label> 
+<label for="mon_id" id="aa10">Other</label>  
+			<label for="mon_id" id="aa11">Date</label> 
+
+			
+
+
+			</form> 
+</div>
+
+<div class="col-lg-12">
+ <form id="pr1">
+  			<input type="radio" name="gender" value="30s" id="30s" > 
+  			<input type="radio" name="gender" value="1min" id="1min"> 
+  			<input type="radio" name="gender" value="2min" id="2min"> 
+			<input type="radio" name="gender" value="5min" id="5min"> 
+			<input type="radio" name="gender" value="10min" id="10min"> 
+			<input type="radio" name="gender" value="15min" id="15min"> 
+			<input type="radio" name="gender" value="30min" id="30min"> 
+			<input type="radio" name="gender" value="60min" id="60min"> 
+<input type="radio" name="gender" value="autre" id ="autre" > 
+			<input type="text"  name="gender" placeholder="Ex : 25" id="dans" class="aaa">
+			<input type="radio" name="gender" value="jr" id ="jr">
+
+			<input type="text"  id="datepicker" class="aaa"> <input id="rdvT" type="text" placeholder="hh:mm" class="aaa"/>
+
+			</form> 
+
+</div>
+
+</br>
+<div class="col-lg-12" id="b1">
+ <ol class="breadcrumb">
+                            <li class="active" >
+                                <i class="fa fa-dashboard" ></i> Duration between tests
+                            </li>
+                        </ol>
+
+<label for="mon_id"" id="b2">Duration (sec) : </label>
+	<input type="number" name="lab32" id="lab32" value="0"><br>
+
+		
+</div>
+
+<div class="col-lg-12" id="b3">
+ <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Stop test by
+                            </li>
+                        </ol>
+
+<input type="radio" name="arret" value="nbr" id="nbr" onclick='enable()'>Number
+<input type="radio" name="arret" value="periode" id="periode" onclick='enable2()'> Time		
+</div>
+
+<div class="col-lg-12" id="b4">
+ <ol class="breadcrumb">
+                            <li class="active" >
+                                <i class="fa fa-dashboard" ></i> Number of tests
+                            </li>
+                        </ol>
+
+<label for="mon_id"" id="b5">Number : </label>
+	<input type="number" name="lab22" id="lab22" value="0" disabled><br>
+
+		
+</div>
+ 
+
+<div class="col-lg-12" id="b6">
+
+  <ol class="breadcrumb">
+                            <li class="active" >
+                                <i class="fa fa-dashboard"></i> Time
+                            </li>
+                        </ol>
+</div>
+<div class="col-lg-12">
+
+<form id="pr21">
+  			<label for="mon_id" id="bb1">30 Sec</label>
+  			<label for="mon_id"id="bb2">1 Min</label>
+  			<label for="mon_id" id="bb3">2 Min</label> 
+			<label for="mon_id" id="bb4">5 Min</label> 
+			<label for="mon_id" id="bb5">10 Min</label> 
+			<label for="mon_id" id="bb6">15 Min</label> 
+			<label for="mon_id" id="bb7">30 Min</label> 
+			<label for="mon_id" id="bb8">60 Min</label> 
+<label for="mon_id" id="bb9">Infinite</label> 
+<label for="mon_id" id="bb10">Other</label>  
+			<label for="mon_id" id="bb11">Date</label> 
+
+			
+
+
+			</form> 
+</div>
+
+<div class="col-lg-12">
+ <form id="pr3">
+  			<input type="radio" name="gender" value="30s" id="30s2" disabled> 
+  			<input type="radio" name="gender" value="1min" id="1min2" disabled> 
+  			<input type="radio" name="gender" value="2min" id="2min2" disabled> 
+			<input type="radio" name="gender" value="5min" id="5min2" disabled> 
+			<input type="radio" name="gender" value="10min" id="10min2" disabled> 
+			<input type="radio" name="gender" value="15min" id="15min2" disabled> 
+			<input type="radio" name="gender" value="30min" id="30min2" disabled> 
+			<input type="radio" name="gender" value="60min" id="60min2" disabled> 
+<input type="radio" name="gender" value="infini" id="infini" disabled>
+<input type="radio" name="gender" value="autre" id ="autre2" disabled> 
+			<input type="text"  name="gender" placeholder="Ex : 25" id="dans2" class="aaa">
+			<input type="radio" name="gender" value="jr" id ="jr2" disabled>
+
+			<input type="text"  id="datepicker2" class="aaa"> <input id="rdvT2" type="text" placeholder="hh:mm" class="aaa"/>
+
+			</form> 
+</div>
+<div class="col-lg-6" id="b7">
+  <ol class="breadcrumb">
+                            <li class="active" >
+                                <i class="fa fa-dashboard"></i> Time left to begin
+                            </li>
+                        </ol>
+</div>
+<div class="col-lg-6" id="b8">
+  <ol class="breadcrumb">
+                            <li class="active" >
+                                <i class="fa fa-dashboard"></i> Time left to finish
+                            </li>
+                        </ol>
+</div>
+
+<div class="col-lg-6" id="b9">
+<div id="cdtime">00&nbsp;:&nbsp;00&nbsp;:&nbsp;00&nbsp;:&nbsp;00&nbsp;:&nbsp;000</div>
+			<div id="txt">Jr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Msc</div>
+</div>
+<div class="col-lg-6" id="b9">
+ <div id="cdtime3">00&nbsp;:&nbsp;00&nbsp;:&nbsp;00&nbsp;:&nbsp;00&nbsp;:&nbsp;000</div>
+			<div id="txt">Jr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Msc</div>
+</div>
+
+  
+
+
+<div>
+               
+                    <button type="submit" value="Programmer" id="Programmer" onclick='programmer()' class="btn btn-info">Start</button>
+                    <button type="submit" value="Annuler" id="Annuler" onclick='annuler()' class="btn btn-danger">Stop</button>
+
+ <button type="submit" value="Annuler" id="hide" onclick='hideschedDiv()' class="btn btn-warning">Hide</button>
+</div>
+                        </div>
+                   </div>
+              
+                <!-- /.row -->
+
+              
+                <!-- /.row -->
+<div class="col-lg-12">
+ <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Charts
+                            </li>
+                        
+                        </ol>
+</div>
+ 
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> RTT</h3>
+                            </div>
+                            <div class="panel-body">
+                           <div id="tempsChart" style=" height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+   <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Success rate</h3>
+                            </div>
+                            <div class="panel-body">
+                               <div id="taux" style=" height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="r1"><span>0</span></div>
+                                        <div>Time min</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="r2"><span>0</span></div>
+                                        <div>Average time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="r3"><span>0</span></div>
+                                        <div>Time max</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+ <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" id="r4"><span>0</span></div>
+                                        <div>Success rate</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<div class="col-lg-7">
+ <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Results Summary
+                            </li>
+                        
+                        </ol>
+</div>
+
+<div class="col-lg-5">
+ <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Detailed results
+                            </li>
+                        
+                        </ol>
+</div>
+              
+     <div id="tab">
+                    <div class="col-lg-7">
+                       
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped" id="resRec">
+                                <thead>
+                                    <tr>
+     <th>Number of packets</th>
+  				  <th>Success rate</th>
+    <th>Tmin (ms)</th>
+    <th>Tavg (ms)</th>
+    <th>Tmax (ms)</th>
+                                       
+                                    </tr>
+ <tr>
+    <td>0</td>
+    <td>0%</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+    
+  </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+
+ </div>
+
+    <div class="col-lg-5">
+                       
+                        <div class="scrollit" id="c1">
+                            <table class="table table-bordered table-hover table-striped" id="resDetail">
+                                <thead>
+                                    <tr>
+                                    <th>Packet id</th>
+  				  <th>Status</th>
+    <th>response time (ms)</th>
+    <th>Date</th>
+                                    </tr>
+
+ </tbody> 
+                            
+                                </tbody>
+                            </table>
+                        </div>
+
+ </div>
+
+</div>
+
+   <div class="col-lg-12" id="b20">
+                        <div class="alert alert-success">
+               
+                    <button type="submit" value="Start" id="Export" onclick='exportFunction()' class="btn btn-success" data-toggle="tooltip" title="Export this table to excel file">Export to Excel</button>
+                    <button id="stopPerl" type="submit" value="Stop" id="Reset" onclick="history.go(0)" class="btn btn-primary" data-toggle="tooltip" title="Reset the test">Reset</button>
+  		    
+
+                        </div>
+                    </div>
+
+ 
+         
+                <!-- /.row -->
+<div class="col-lg-12">
+ <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Console results
+                            </li>
+                        
+                        </ol>
+</div>
+              
+                    <div class="col-lg-12" >
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Console</h3>
+                            </div>
+                            <div class="panel-body" id="cc1">
+                                <div class="list-group" id="results" >
+                                    <ul href="#" class="list-group-item" id="lis">
+                                     
+                                      
+                                  <ul>
+                                  
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+
+
+</body>
+
+</html>
