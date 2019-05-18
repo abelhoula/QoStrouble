@@ -26,5 +26,4 @@ C --> E(AT Commands scripts)
 C --> F(Linux scripts)
 E-->G[network access endpoints]
 F-->H[Android terminal]
-
 ```
