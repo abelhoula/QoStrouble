@@ -16,3 +16,15 @@ details on the installation steps, please sent a request through maill to `ahmd.
 * he results folder contains the temporary results of the tests before which they will be displayed in the web interface.
 * The folder Ul contains the different files to send (1 Mo, 100 Mo, and 1 Go). Any other file to send must be put in this folder.
 * The folder web contains the user views  (index.html, Ping.html, Trace.html, Dns.html, Web.Html ...etc).
+
+### Architecture of application:
+```mermaid
+graph LR
+A((Adminstrator)) -- request --> C{web server}
+C-- response --> A
+C --> E(AT Commands scripts)
+C --> F(Linux scripts)
+E-->G[network access endpoints]
+F-->H[Android terminal]
+
+```
