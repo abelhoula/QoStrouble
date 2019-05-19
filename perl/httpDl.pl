@@ -51,7 +51,7 @@ my $size=0;
 		#Récupération des options du test
 	#-----------------------------------------------------------------------------------------	
 
-$Options = "wget --delete-after -T 5 -O /opt/lampp/htdocs/Stage2/Dl/file";
+$Options = "wget --delete-after -T 5 -O /opt/lampp/htdocs/Qostrouble/Dl/file";
 
 if ($OptionH1 eq 'true') 
 {
@@ -119,7 +119,7 @@ $socket->close();
  #-----------------------------------------------------------------------------------------	
 		#Récupération des résultats du fichier temporaire et envois au Javascript
 	#-----------------------------------------------------------------------------------------
-my $filename = '/opt/lampp/htdocs/Stage2/resultats/tmp';
+my $filename = '/opt/lampp/htdocs/Qostrouble/resultats/tmp';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
 while (my $row = <$fh>) {

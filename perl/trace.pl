@@ -134,7 +134,7 @@ $socket->close();
  #-----------------------------------------------------------------------------------------	
 		#Récupération des résultats du fichier temporaire et envois au Javascript
 	#-----------------------------------------------------------------------------------------
-my $filename = '/opt/lampp/htdocs/Stage2/resultats/tmp';
+my $filename = '/opt/lampp/htdocs/QoStrouble/resultats/tmp';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
  

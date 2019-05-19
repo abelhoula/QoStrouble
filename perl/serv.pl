@@ -50,7 +50,7 @@ print $datestring;
 #-----------------------------------------------------------------------------------------	
 		#Lancement de la capture
 	#-----------------------------------------------------------------------------------------
-system("tshark $Options -w /opt/lampp/htdocs/Stage2/resultats/$file");
+system("tshark $Options -w /opt/lampp/htdocs/Qostrouble/resultats/$file");
 #-----------------------------------------------------------------------------------------	
 		#Fermeture de la socket
 	#-----------------------------------------------------------------------------------------
@@ -58,16 +58,16 @@ $socket->close();
 #-----------------------------------------------------------------------------------------	
 		#Changement des droit d'administration du fichier trace créee
 	#-----------------------------------------------------------------------------------------
-system("chmod 777 /opt/lampp/htdocs/Stage2/resultats/$file");
+system("chmod 777 /opt/lampp/htdocs/Qostrouble/resultats/$file");
 #-----------------------------------------------------------------------------------------	
 		#Sauvegarde du nom de la trace générée dans un fichier tomporaire
 	#-----------------------------------------------------------------------------------------
-system("echo $file > /opt/lampp/htdocs/Stage2/resultats/file.txt");
+system("echo $file > /opt/lampp/htdocs/Qostrouble/resultats/file.txt");
 sleep 1;
 #-----------------------------------------------------------------------------------------	
 		#Copie de la trace vers le bureau.
 	#-----------------------------------------------------------------------------------------
-system("cp /opt/lampp/htdocs/Stage2/resultats/$file /home/cec/Desktop/NetProTester/Captures");
+system("cp /opt/lampp/htdocs/Qostrouble/resultats/$file /opt/lampp/htdocs/Qostrouble/resultats/Captures");
 
 }
 

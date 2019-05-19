@@ -60,7 +60,7 @@ $var = <$socket>;
 	#-----------------------------------------------------------------------------------------
 $socket->close();
 my $line;
-my $filename = '/opt/lampp/htdocs/Stage2/resultats/tmp2';
+my $filename = '/opt/lampp/htdocs/Qostrouble/resultats/tmp2';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
 while (my $row = <$fh>) {

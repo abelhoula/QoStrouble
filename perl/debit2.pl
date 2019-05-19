@@ -48,7 +48,7 @@ print $Options;
 		#Lancement de la commande et mettre les résultats dans un fichier tomporaire
 	#-----------------------------------------------------------------------------------------
 
-system("$Options > /opt/lampp/htdocs/Stage2/resultats/tmp2");
+system("$Options > /opt/lampp/htdocs/Qostrouble/resultats/tmp2");
 print $clientsocket "done";
 shutdown($clientsocket, 1);
 

@@ -50,7 +50,7 @@ print $Options;
 #-----------------------------------------------------------------------------------------	
 		#Lancement des tests et mettre les résultats dans un fichier tomporaire
 	#-----------------------------------------------------------------------------------------
-system("$Options> /opt/lampp/htdocs/Stage2/resultats/tmp");
+system("$Options> /opt/lampp/htdocs/QoStrouble/resultats/tmp");
 print $clientsocket "done";
 shutdown($clientsocket, 1);
 

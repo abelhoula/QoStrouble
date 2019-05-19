@@ -42,12 +42,12 @@ my $var = "";
 		#Récupération du PID du processus de la trace tshark
 	#-----------------------------------------------------------------------------------------	
 my $Options = "pgrep -u root tshark";
-system("$Options > /opt/lampp/htdocs/Stage2/resultats/tmp3");
+system("$Options > /opt/lampp/htdocs/Qostrouble/resultats/tmp3");
 #-----------------------------------------------------------------------------------------	
 		#Sauvegarde du résultat dans un fichier temporaire
 	#-----------------------------------------------------------------------------------------	
 my $line;
-my $filename = '/opt/lampp/htdocs/Stage2/resultats/tmp3';
+my $filename = '/opt/lampp/htdocs/Qostrouble/resultats/tmp3';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
 while (my $row = <$fh>) {
