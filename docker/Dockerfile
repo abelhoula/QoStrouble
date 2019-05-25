@@ -4,7 +4,7 @@ ENV TERM=xterm
 
 # Install curl and net-stats for XAMPP 
 RUN apt-get update && \
- apt install -yq curl net-tools psmisc traceroute lftp dnsutils tshark
+ apt install -yq curl net-tools wget psmisc traceroute lftp dnsutils tshark
 
 # Download the installer (7.2.12)
 RUN XAMPP_DL_LINK=' \
