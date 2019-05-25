@@ -42,7 +42,7 @@ RUN echo "export TERM=xterm" >> /root/.bashrc
 
 EXPOSE 80 443 3306
 
-ADD init.sh /usr/local/bin/init.sh
+ADD ./docker/init.sh /usr/local/bin/init.sh
 RUN chmod 777 /usr/local/bin/init.sh
 
 # Start the init script
