@@ -18,4 +18,5 @@ details on the installation steps, please sent a request through maill to `ahmd.
 * The folder web contains the user views  (index.html, Ping.html, Trace.html, Dns.html, Web.Html ...etc).
 
 # application global architecture
-![](./img/architecture.svg =50x20)
+
+![](./img/architecture.svg)
