@@ -17,5 +17,5 @@ details on the installation steps, please sent a request through maill to `ahmd.
 * The folder Ul contains the different files to send (1 Mo, 100 Mo, and 1 Go). Any other file to send must be put in this folder.
 * The folder web contains the user views  (index.html, Ping.html, Trace.html, Dns.html, Web.Html ...etc).
 
-
-<img src="./img/architecture.svg alt="drawing" width="20%" hiegh="50%"/>
+# application global architecture
+![](./img/architecture.svg =50x20)
