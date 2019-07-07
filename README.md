@@ -38,5 +38,4 @@ D --- c4
 classDef green fill:#9f6,stroke:#333,stroke-width:2px;
 classDef orange fill:#f96,stroke:#333,stroke-width:4px;
 class c1,c2,c3,c4 green
-class B,F,I orange
 ```
