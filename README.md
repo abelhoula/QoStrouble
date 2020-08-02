@@ -3,7 +3,6 @@
 ## how the QoStrouble tool works:
 
  * The QoStrouble tool can be used through a virtual machine or a physical machine or or a an advanced virtualization clould plateform soon (**docker swarm cluster** , **kubernetes cluster**) . For more
-details on the installation steps, please sent a request through maill to `ahmd.belhoula@gmail.com` to consult the file Spec.
 
 ### the utility of each directory:
 
